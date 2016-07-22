@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Sociodroid</string>
     <string name="facebook_app_id">1646358262348606</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
