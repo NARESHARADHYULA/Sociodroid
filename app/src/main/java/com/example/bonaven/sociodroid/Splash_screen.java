@@ -19,7 +19,7 @@ public class Splash_screen extends AppCompatActivity {
         },3000);
     }
     public void nextactivity(){
-        Intent intent= new Intent(this,MainActivity.class);
+        Intent intent= new Intent(this,Loginactivity.class);
         startActivity(intent);
 
     }
