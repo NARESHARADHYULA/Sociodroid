@@ -37,6 +37,7 @@ public class Loginactivity extends AppCompatActivity {
     FacebookCallback facebookCallback;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
+    private Profile profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +72,14 @@ public class Loginactivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 accessToken=loginResult.getAccessToken();
-                Profile profile=Profile.getCurrentProfile();
+                profile=Profile.getCurrentProfile();
 
                 GraphRequest request=GraphRequest.newMeRequest(loginResult.getAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 Log.i("response",response.toString());
+                                Log.i("profile",profile+"");
                                 try {
                                     Log.i("emailresponse",object.get("email").toString());
                                     info.setText(object.get("email")+"");
@@ -85,6 +87,7 @@ public class Loginactivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),object.get("email").toString(),Toast.LENGTH_LONG).show();
                                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                                     intent.putExtra("product",object.toString());
+                                    intent.putExtra("profile",profile);
                                     startActivity(intent);
                                 }
                                 catch (Exception e){

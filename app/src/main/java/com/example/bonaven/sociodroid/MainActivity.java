@@ -33,17 +33,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         String data=getIntent().getStringExtra("product");
         Toast.makeText(getApplicationContext(),data,Toast.LENGTH_LONG).show();
-        //buidprofile(profile);
+        Profile profile=getIntent().getParcelableExtra("profile");
+        Profile profile1=Profile.getCurrentProfile();
+        //Log.i("profile",profile.getProfilePictureUri(50,50).toString());
+        Toast.makeText(getApplicationContext(),profile1.getProfilePictureUri(50,50).toString(),Toast.LENGTH_LONG).show();
+        buidprofile(profile1);
     }
     public void buidprofile(Profile profile){
        ImageView profilepic= (ImageView) findViewById(R.id.profilepic);
-        String imagurl=profile+"";
-        Toast.makeText(getApplicationContext(),imagurl,Toast.LENGTH_LONG).show();
-//        Picasso.with(this)
-//                .load()
-//                .placeholder(R.drawable.imageplaceholder)
-//                .error(R.drawable.imageplaceholder)
-//                .into(profilepic);
+        String imagurl=profile.getProfilePictureUri(150,150).toString();
+        //Toast.makeText(getApplicationContext(),imagurl,Toast.LENGTH_LONG).show();
+        Picasso.with(this)
+                .load(imagurl)
+                .placeholder(R.drawable.imageplaceholder)
+                .error(R.drawable.imageplaceholder)
+                .into(profilepic);
     }
 
 }
